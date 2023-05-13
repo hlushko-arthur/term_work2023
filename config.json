@@ -1,0 +1,23 @@
+{
+	"name": "termWork",
+	"description": "",
+	"keywords": "Default Project",
+	"license": "MIT",
+	"icon": "/client/src/favicon.ico",
+	"prefix": "wawNgx",
+	"port": 8080,
+	"session": true,
+	"mongo": {
+		"host": "127.0.0.1",
+		"port": 27017,
+		"db": "waw"
+	},
+	"modules": {
+		"template": "waw",
+		"core": "waw",
+		"sem": "waw"
+	},
+	"dependencies": {
+		"mongoose": "*"
+	}
+}

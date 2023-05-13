@@ -1,0 +1,9 @@
+{
+    "name": "Student",
+    "router": "router.js",
+    "crud": {
+        "update": {
+            "keys": ["fullName", "educationalProgram", "completionYear", "studyForm", "studyType", "groupCode","studentsNumber", "additionalInfo"]
+        }
+    }
+}

@@ -1,0 +1,179 @@
+<div class="body">
+	<header>
+		<div class="header_item">
+			<input
+				class="input"
+				[(ngModel)]="search"
+				placeholder="Пошук..."
+				type="text"
+			/>
+		</div>
+
+		<div class="header_item">
+			<select
+				(ngModelChange)="onChangeSort()"
+				[(ngModel)]="sortBy"
+				class="selector"
+			>
+				<option value="" disabled>Сортувати за...</option>
+				<option value="fullName">ПІБ</option>
+				<option value="completionYear">Рік закінчення</option>
+				<option value="groupCode">Шифр групи</option>
+			</select>
+		</div>
+	</header>
+	<main class="content">
+		<table>
+			<tr>
+				<th>№</th>
+				<th>Прізвище, ім'я, по батькові випускника</th>
+				<th>Освітня программа, за якою навчався</th>
+				<th>Рік закінчення</th>
+				<th>Форма навчання (денна/заочна)</th>
+				<th>Бюджет/контракт</th>
+				<th>Шифр групи та кількість студентів</th>
+				<th>Посада та місце роботи</th>
+				<th>
+					<img
+						class="button button_create"
+						src="assets/icons/create.png"
+						(click)="isNewStudent = true"
+					/>
+				</th>
+			</tr>
+			<tr
+				*ngFor="let student of studentService.students | search: search; index as i"
+			>
+				<td>{{i + 1}}</td>
+				<td>
+					<div
+						[contentEditable]="isEditable(student._id)"
+						(input)="saveStudentInfo('fullName', $event)"
+						class="td"
+					>
+						{{student.fullName}}
+					</div>
+				</td>
+				<td (input)="saveStudentInfo('educationalProgram', $event)">
+					<div [contentEditable]="isEditable(student._id)" class="td">
+						{{student.educationalProgram}}
+					</div>
+				</td>
+				<td>
+					<div
+						[contentEditable]="isEditable(student._id)"
+						(input)="saveStudentInfo('completionYear', $event)"
+						class="td"
+					>
+						{{student.completionYear}}
+					</div>
+				</td>
+				<td>
+					<div
+						[contentEditable]="isEditable(student._id)"
+						(input)="saveStudentInfo('studyForm', $event)"
+						class="td"
+					>
+						{{student.studyForm}}
+					</div>
+				</td>
+				<td>
+					<div
+						[contentEditable]="isEditable(student._id)"
+						(input)="saveStudentInfo('studyType', $event)"
+						class="td"
+					>
+						{{student.studyType}}
+					</div>
+				</td>
+				<td>
+					<div
+						[contentEditable]="isEditable(student._id)"
+						(input)="saveStudentInfo('groupCode', $event)"
+						class="td"
+					>
+						{{student.groupCode}}
+					</div>
+				</td>
+				<td>
+					<div
+						[contentEditable]="isEditable(student._id)"
+						(input)="saveStudentInfo('additionalInfo', $event)"
+						class="td"
+					>
+						{{student.additionalInfo}}
+					</div>
+				</td>
+				<td class="actions">
+					<img
+						*ngIf="editableStudent?._id !== student._id"
+						class="button"
+						(click)="deleteStudent(student._id)"
+						src="/assets/icons/delete.png"
+					/>
+					<img
+						*ngIf="editableStudent?._id !== student._id"
+						class="button"
+						(click)="prepareToEdit(student)"
+						src="/assets/icons/edit.png"
+					/>
+					<img
+						*ngIf="isEditable(student._id)"
+						class="button button_cancel"
+						(click)="cancelEditing(student._id)"
+						src="/assets/icons/cancel.png"
+					/>
+					<img
+						*ngIf="isEditable(student._id)"
+						class="button"
+						(click)="updateStudent()"
+						src="/assets/icons/apply.png"
+					/>
+				</td>
+			</tr>
+			<tr *ngIf="isNewStudent">
+				<td>{{studentService.students.length + 1}}</td>
+				<td
+					contenteditable
+					(input)="saveNewStudentInfo('fullName', $event)"
+				></td>
+				<td
+					contenteditable
+					(input)="saveNewStudentInfo('educationalProgram', $event)"
+				></td>
+				<td
+					contenteditable
+					(input)="saveNewStudentInfo('completionYear', $event)"
+				></td>
+				<td
+					contenteditable
+					(input)="saveNewStudentInfo('studyForm', $event)"
+				></td>
+				<td
+					contenteditable
+					(input)="saveNewStudentInfo('studyType', $event)"
+				></td>
+				<td
+					contenteditable
+					(input)="saveNewStudentInfo('groupCode', $event)"
+				></td>
+				<td
+					contenteditable
+					(input)="saveNewStudentInfo('additionalInfo', $event)"
+				></td>
+				<td>
+					<img
+						class="button button_cancel"
+						(click)="cancelCreating()"
+						src="/assets/icons/cancel.png"
+					/>
+					<img
+						class="button"
+						(click)="createStudent()"
+						src="/assets/icons/apply.png"
+					/>
+				</td>
+			</tr>
+		</table>
+	</main>
+</div>
