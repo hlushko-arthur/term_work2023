@@ -130,19 +130,6 @@ export class TableComponent implements OnInit {
 		this.isNewStudent = false;
 	}
 
-	onChangeSort(): void {
-		this.studentService.students.sort((a: IStudent, b: IStudent) => {
-			if (
-				a[this.sortBy as keyof IStudent] <
-				b[this.sortBy as keyof IStudent]
-			) {
-				return -1;
-			}
-
-			return 1;
-		});
-	}
-
 	isEditable(_id: string): boolean {
 		return this.editableStudent?._id === _id;
 	}

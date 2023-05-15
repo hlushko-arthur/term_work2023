@@ -11,7 +11,7 @@
 
 		<div class="header_item">
 			<select
-				(ngModelChange)="onChangeSort()"
+				(ngModelChange)="studentService.sort($event)"
 				[(ngModel)]="sortBy"
 				class="selector"
 			>

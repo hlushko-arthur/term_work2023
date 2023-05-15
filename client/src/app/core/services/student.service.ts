@@ -82,4 +82,14 @@ export class StudentService {
 			}
 		);
 	}
+
+	sort(key: string): void {
+		this.students.sort((a: IStudent, b: IStudent) => {
+			if (a[key as keyof IStudent] < b[key as keyof IStudent]) {
+				return -1;
+			}
+
+			return 1;
+		});
+	}
 }

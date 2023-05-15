@@ -18,14 +18,14 @@ export class SearchPipe implements PipeTransform {
 			keys = Object.keys(students[0]);
 		}
 
-		search = search.toLowerCase();
-
 		return students.filter((student: IStudent) => {
 			return keys?.some((key) => {
 				const propertyValue = student[key as keyof IStudent];
 
 				if (propertyValue && typeof propertyValue === 'string') {
-					return propertyValue.toLowerCase().includes(search);
+					return propertyValue
+						.toLowerCase()
+						.includes(search.toLowerCase());
 				}
 
 				return false;
