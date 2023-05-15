@@ -48,13 +48,15 @@
 				<td>
 					<div
 						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('fullName', $event)"
+						(input)="saveStudentInfo('editableStudent', 'fullName', $event)"
 						class="td"
 					>
 						{{student.fullName}}
 					</div>
 				</td>
-				<td (input)="saveStudentInfo('educationalProgram', $event)">
+				<td
+					(input)="saveStudentInfo('editableStudent', 'educationalProgram', $event)"
+				>
 					<div [contentEditable]="isEditable(student._id)" class="td">
 						{{student.educationalProgram}}
 					</div>
@@ -62,7 +64,7 @@
 				<td>
 					<div
 						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('completionYear', $event)"
+						(input)="saveStudentInfo('editableStudent', 'completionYear', $event)"
 						class="td"
 					>
 						{{student.completionYear}}
@@ -71,7 +73,7 @@
 				<td>
 					<div
 						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('studyForm', $event)"
+						(input)="saveStudentInfo('editableStudent', 'studyForm', $event)"
 						class="td"
 					>
 						{{student.studyForm}}
@@ -80,7 +82,7 @@
 				<td>
 					<div
 						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('studyType', $event)"
+						(input)="saveStudentInfo('editableStudent', 'studyType', $event)"
 						class="td"
 					>
 						{{student.studyType}}
@@ -89,7 +91,7 @@
 				<td>
 					<div
 						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('groupCode', $event)"
+						(input)="saveStudentInfo('editableStudent', 'groupCode', $event)"
 						class="td"
 					>
 						{{student.groupCode}}
@@ -98,7 +100,7 @@
 				<td>
 					<div
 						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('additionalInfo', $event)"
+						(input)="saveStudentInfo('editableStudent', 'additionalInfo', $event)"
 						class="td"
 					>
 						{{student.additionalInfo}}
@@ -135,31 +137,31 @@
 				<td>{{studentService.students.length + 1}}</td>
 				<td
 					contenteditable
-					(input)="saveNewStudentInfo('fullName', $event)"
+					(input)="saveStudentInfo('newStudent', 'fullName', $event)"
 				></td>
 				<td
 					contenteditable
-					(input)="saveNewStudentInfo('educationalProgram', $event)"
+					(input)="saveStudentInfo('newStudent', 'educationalProgram', $event)"
 				></td>
 				<td
 					contenteditable
-					(input)="saveNewStudentInfo('completionYear', $event)"
+					(input)="saveStudentInfo('newStudent', 'completionYear', $event)"
 				></td>
 				<td
 					contenteditable
-					(input)="saveNewStudentInfo('studyForm', $event)"
+					(input)="saveStudentInfo('newStudent', 'studyForm', $event)"
 				></td>
 				<td
 					contenteditable
-					(input)="saveNewStudentInfo('studyType', $event)"
+					(input)="saveStudentInfo('newStudent', 'studyType', $event)"
 				></td>
 				<td
 					contenteditable
-					(input)="saveNewStudentInfo('groupCode', $event)"
+					(input)="saveStudentInfo('newStudent', 'groupCode', $event)"
 				></td>
 				<td
 					contenteditable
-					(input)="saveNewStudentInfo('additionalInfo', $event)"
+					(input)="saveStudentInfo('newStudent', 'additionalInfo', $event)"
 				></td>
 				<td>
 					<img

@@ -4,7 +4,7 @@
 	"keywords": "Default Project",
 	"license": "MIT",
 	"icon": "/client/src/favicon.ico",
-	"prefix": "wawNgx",
+	"prefix": "Students",
 	"port": 8080,
 	"session": true,
 	"mongo": {

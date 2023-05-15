@@ -47,7 +47,7 @@ const routes: Routes = [
 				defaults: {
 					title: 'AH',
 					titleSuffix: ' | AH',
-					'og:image': 'https://webart.work/api/user/cdn/waw-logo.png'
+					'og:image': 'assets/logo.png'
 				}
 			},
 			modal: {

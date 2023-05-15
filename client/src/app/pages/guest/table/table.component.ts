@@ -30,12 +30,6 @@ export class TableComponent implements OnInit {
 		this.studentService.getAll();
 	}
 
-	saveNewStudentInfo(key: keyof INewStudent, event: Event): void {
-		const target = event.target as HTMLInputElement;
-
-		this.newStudent[key] = target.innerText;
-	}
-
 	createStudent(): void {
 		this.studentService.create(
 			this.newStudent,
@@ -90,16 +84,24 @@ export class TableComponent implements OnInit {
 
 	prepareToEdit(student: IStudent): void {
 		if (this.editableStudent) {
-			this.cancelEditing(this.editableStudent._id as string);
+			this.cancelEditing(this.editableStudent._id);
 		}
 
 		this.editableStudent = JSON.parse(JSON.stringify(student));
 	}
 
-	saveStudentInfo(key: keyof IStudent, event: Event): void {
+	saveStudentInfo(
+		prop: 'editableStudent' | 'newStudent',
+		key: keyof IStudent | keyof INewStudent,
+		event: Event
+	): void {
 		const target = event.target as HTMLInputElement;
 
-		this.editableStudent[key] = target.innerText;
+		if (prop === 'editableStudent') {
+			this.editableStudent[key] = target.innerText;
+		} else if (prop === 'newStudent') {
+			this.newStudent[key as keyof INewStudent] = target.innerText;
+		}
 	}
 
 	cancelEditing(_id: string): void {
