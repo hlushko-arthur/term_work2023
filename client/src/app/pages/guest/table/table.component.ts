@@ -77,7 +77,25 @@ export class TableComponent implements OnInit {
 	}
 
 	updateStudent(): void {
+		this._alert.show({
+			text: 'Зачекайте, відбувається оновлення студента...'
+		});
+
 		this.studentService.update(this.editableStudent, (resp) => {
+			if (resp.status) {
+				this._alert.destroy();
+
+				this._alert.success({
+					text: 'Студент успішно оновлений'
+				});
+			} else {
+				this._alert.destroy();
+
+				this._alert.success({
+					text: resp.message
+				});
+			}
+
 			this.editableStudent = {} as IStudent;
 		});
 	}

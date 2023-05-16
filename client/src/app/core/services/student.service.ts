@@ -4,10 +4,14 @@ import { IStudent } from '../interfaces/student';
 import { INewStudent } from 'app/pages/guest/table/table.component';
 import { IResponse } from '../interfaces/response';
 
+type TStudentKeys = keyof IStudent;
+
 @Injectable({
 	providedIn: 'root'
 })
 export class StudentService {
+	keys: TStudentKeys[] = [];
+
 	students: IStudent[] = [];
 
 	constructor(private _http: HttpService) {}
@@ -19,6 +23,12 @@ export class StudentService {
 		this._http.get('/api/student/getAll', (resp: IResponse) => {
 			if (resp.status) {
 				this.students = resp.data as IStudent[];
+
+				if (this.students.length) {
+					this.keys = Object.keys(this.students[0]).filter(
+						(key) => key !== '_id' && key !== '__v'
+					) as (keyof IStudent)[];
+				}
 
 				cb(resp);
 			} else {

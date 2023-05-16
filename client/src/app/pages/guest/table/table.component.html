@@ -45,65 +45,13 @@
 				*ngFor="let student of studentService.students | search: search; index as i"
 			>
 				<td>{{i + 1}}</td>
-				<td>
+				<td *ngFor="let key of studentService.keys">
 					<div
 						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('editableStudent', 'fullName', $event)"
+						(input)="saveStudentInfo('editableStudent', key, $event)"
 						class="td"
 					>
-						{{student.fullName}}
-					</div>
-				</td>
-				<td
-					(input)="saveStudentInfo('editableStudent', 'educationalProgram', $event)"
-				>
-					<div [contentEditable]="isEditable(student._id)" class="td">
-						{{student.educationalProgram}}
-					</div>
-				</td>
-				<td>
-					<div
-						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('editableStudent', 'completionYear', $event)"
-						class="td"
-					>
-						{{student.completionYear}}
-					</div>
-				</td>
-				<td>
-					<div
-						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('editableStudent', 'studyForm', $event)"
-						class="td"
-					>
-						{{student.studyForm}}
-					</div>
-				</td>
-				<td>
-					<div
-						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('editableStudent', 'studyType', $event)"
-						class="td"
-					>
-						{{student.studyType}}
-					</div>
-				</td>
-				<td>
-					<div
-						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('editableStudent', 'groupCode', $event)"
-						class="td"
-					>
-						{{student.groupCode}}
-					</div>
-				</td>
-				<td>
-					<div
-						[contentEditable]="isEditable(student._id)"
-						(input)="saveStudentInfo('editableStudent', 'additionalInfo', $event)"
-						class="td"
-					>
-						{{student.additionalInfo}}
+						{{student[key]}}
 					</div>
 				</td>
 				<td class="actions">
@@ -136,32 +84,9 @@
 			<tr *ngIf="isNewStudent">
 				<td>{{studentService.students.length + 1}}</td>
 				<td
+					*ngFor="let key of studentService.keys"
 					contenteditable
-					(input)="saveStudentInfo('newStudent', 'fullName', $event)"
-				></td>
-				<td
-					contenteditable
-					(input)="saveStudentInfo('newStudent', 'educationalProgram', $event)"
-				></td>
-				<td
-					contenteditable
-					(input)="saveStudentInfo('newStudent', 'completionYear', $event)"
-				></td>
-				<td
-					contenteditable
-					(input)="saveStudentInfo('newStudent', 'studyForm', $event)"
-				></td>
-				<td
-					contenteditable
-					(input)="saveStudentInfo('newStudent', 'studyType', $event)"
-				></td>
-				<td
-					contenteditable
-					(input)="saveStudentInfo('newStudent', 'groupCode', $event)"
-				></td>
-				<td
-					contenteditable
-					(input)="saveStudentInfo('newStudent', 'additionalInfo', $event)"
+					(input)="saveStudentInfo('newStudent', key, $event)"
 				></td>
 				<td>
 					<img
