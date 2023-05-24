@@ -10,7 +10,15 @@ type TStudentKeys = keyof IStudent;
 	providedIn: 'root'
 })
 export class StudentService {
-	keys: TStudentKeys[] = [];
+	keys: TStudentKeys[] = [
+		'fullName',
+		'educationalProgram',
+		'completionYear',
+		'studyForm',
+		'studyType',
+		'groupCode',
+		'additionalInfo'
+	];
 
 	students: IStudent[] = [];
 
